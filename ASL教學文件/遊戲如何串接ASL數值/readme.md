@@ -47,23 +47,23 @@
 ### 數值如何串接 Ugui 進行顯示
 * 使用 ValueView_UguiText 腳本
     * 在 Text 遊戲物件身上添加腳本 `ValueView_UguiText`，添加此腳本時會同時在物件身上自動添加 `FocsValueSource` 腳本。view 腳本會參考 source 腳本設定的數值來進行顯示，source 腳本的內容直接同步在 view 腳本身上的 Source 欄位，這個被自動添加的腳本一般情況下會被影藏，可以透過下圖演示的按鈕開關顯示。
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/%E6%B7%BB%E5%8A%A0ValueView%E8%85%B3%E6%9C%AC.gif?inline=false)
+    ![](./添加ValueView腳本.gif)
     
     * 設定 source 的數值時先設定要顯示的 ASL 數值型別，接著在選擇你要顯示的數值參考。
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/%E9%81%B8%E6%93%87ValueView%E6%95%B8%E5%80%BC.gif?inline=false)
+    ![](./選擇ValueView數值.gif)
 
     * 在 SampleAPlatformUIScene 場景中，底bar數值的身上都掛有 `ValueView_UguiText` 腳本，以此來設定該數值需要參考的 ASL 數值來源。
 
 * 以 SampleGame 的 bet 為例，先在 Component 的 `Source Type` 欄位選擇數值型別為 int 後，在 Value 頁籤下，設定此數值要參考 SampleGameAUnit 的 bet 數值。
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/BetValueView.png?inline=false)
+    ![](./BetValueView.png)
 
 * 以 SampleGame 的 credit 為例，先在 Component 的 `Source Type` 欄位選擇數值型別為 long 後(credit數值可能會大於int)，在 Value 頁籤下，設定此數值會來自兩個數值相加，第一個數值要參考 MoneyUnit 的 credit 數值，第二個數值則參考自底bar中的 Win 分。
 
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/CreditValueView.png?inline=false)
+    ![](./CreditValueView.png)
     
 * 以 SampleGame 的 win 為例，先在 Component 的 `Source Type` 欄位選擇數值型別為 long 後(win數值可能會大於int)，在 `Value` 頁籤下，設定此數值為 `Temp`，表示該數值並不參考任何 ASL Value，任何腳本都可以抓取他的實體直接對他設定數值。
 
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/WinValueView.png?inline=false)
+    ![](./WinValueView.png)
 
 
 ---
@@ -95,7 +95,7 @@
 
 * ReportsDataView 腳本
     * 在 Period Data 與 Lifetime Data 身上掛有 `ReportsDataView` 腳本，這個腳本直接參考了 `ReportsAccountUnit` 身上的 `nowPeriodData` 與 `liftTimeData`，他會在 `nowPeriodData` 與 `liftTimeData` 有更新的時候，去更新子物件中的各個 `Temp` 數值。
-![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/ReportsDataView.png?inline=false)
+![](./ReportsDataView.png)
 
 
 ### Settings 頁的設定值
@@ -109,7 +109,7 @@
 * 以 SYSTEM LIMIT 來說，它的選項包含 100000、200000、500000 三個數值。
     * 在 `MoneySettingUnit` 的 `Variable` 選單中有 systemLimitIndex 數值。
     * 在 `MoneySettingUnit` 的 `Property` 選單中有 systemLimit 的定義，它包含三個選項，並且會參考 systemLimitIndex 來回傳對應的數值。
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/SystemLimit.png?inline=false)
+    ![](./SystemLimit.png)
 
 * 設定頁在調整設定值時，實際上會去修改 Unit 身上的各種 index，如此遊戲在取得設定值時，就會根據各自不同的 index 來得到對應的數值。
 
@@ -123,7 +123,7 @@
     * `PageItem` 腳本是用於系統頁面中的各項元件操作，我們在按鈕或設定值等元件上掛了這個腳本，它可以控制游標系統以及觸控系統對該元件的各項操作。
     * 在設定值元件上，我們設定當玩家使用游標系統按下確認，或觸控系統點擊設定值時，會觸發 `FocsValueIndexerSource.SetAsNextIndex`，它會將參考的設定值 index 設成下一個，達成切換設定值的操作。
     
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/PageItem.png?inline=false)
+    ![](./PageItem.png)
     * 各個按鈕頁籤說明
         * `↑`/`↓`/`←`/`→` : 游標系統停留在此元件時，按下`上`/`下`/`左`/`右`按鈕會觸發的功能。
         * `√` : 游標系統在此元件按下`確認`，或是觸碰系統`點選`時，會觸發的功能。

@@ -18,7 +18,7 @@
 * 它身上定義了兩個行為，`Update` 與 `InitComponent`，分別負責裝置元件的更新與初始化，基本上 base 類的行為不做任何事，僅提供給需要的裝置各自複寫下去實作。
 * Unit 的繼承與複寫
 
-![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/Unit%E7%B9%BC%E6%89%BF%E8%88%87%E8%A4%87%E5%AF%AB.png?inline=false)
+![](./Unit繼承與複寫.png)
 
 ---
 ## Button

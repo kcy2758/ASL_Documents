@@ -85,7 +85,7 @@ Account_AddLasthandDataBehaviour.OnDoBehaviour(){
 * 在 Last Hand Home Page 的子物件 Items 下預設有三個 Spin History 物件，他們都是身上掛著 `PageItem` 的按鈕，每個按鈕代表各款遊戲。
 * 專案需要在此頁面增減 Spin History 物件，為物件換上遊戲 icon 或按鈕圖片，並自行排版。
 * 在 Spin History 物件的 `PageItem` 腳本身上，需要設定按下按鈕時會切換到哪個遊戲的Lasthand頁面。
-![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_ForestBash/%E6%95%99%E5%AD%B8%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%20ASL%20%E5%AE%A2%E8%A3%BD%E5%8C%96%E9%81%8A%E6%88%B2%E7%9A%84%E5%B8%B3%E7%9B%AE%E8%B3%87%E6%96%99/LasthandHomePage_PageItem.png?inline=false)
+![](./LasthandHomePage_PageItem.png)
 
 
 ---
@@ -115,7 +115,7 @@ Account_AddLasthandDataBehaviour.OnDoBehaviour(){
     * 第二個 ValueSource 設定為 string 形式，選擇「Const」，並填入 " OF " 字串。
     * 第三個 ValueSource 設定為 string 形式，選擇「Const」，並填入遊戲名稱字串。
     * 設定好之後，遊戲運行時，Title 的 Text 文字就會自動顯示成三個 ValueSource 的結果組合起來的字串，像是 [No的int數值][ OF ][遊戲名稱字串]。
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_ForestBash/%E6%95%99%E5%AD%B8%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%20ASL%20%E5%AE%A2%E8%A3%BD%E5%8C%96%E9%81%8A%E6%88%B2%E7%9A%84%E5%B8%B3%E7%9B%AE%E8%B3%87%E6%96%99/Lasthand_Title.png?inline=false)
+    ![](./Lasthand_Title.png)
 * 接下來我們要對 No 與 GameName 設定正確的數值，設定的方法會透過 `LasthandDataView` 腳本，以下稱它為 DataView。
     * DataView 抓有 No 的參考，它會將 `LastHandPageAction` 丟過來的 index 數值設定給 No 物件的 ValueSource。
 
@@ -125,9 +125,9 @@ Account_AddLasthandDataBehaviour.OnDoBehaviour(){
     * TotalWin 設定 SourceType 為 Temp 形式的 long。
 * 在頁面中，我們希望時間資訊顯示的格式為 TIME: MM/DD/YYYY HH:mm:ss，並且我們希望獲獎贏分顯示的格式為 TOTALWIN: XXX，因此我們需要在他們身上的 `ValueView_UguiText` 腳本中，切換到 `ToString` 頁籤去做設定。
     * GameTime 將 Base To String Adjust 欄位選擇為 `ValueAdjustAslTimeCustomFormat`，並且在下方欄位中填入 `TIME: {AutoDate} {3:D2}:{4:D2}:{5:D2}`。
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_ForestBash/%E6%95%99%E5%AD%B8%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%20ASL%20%E5%AE%A2%E8%A3%BD%E5%8C%96%E9%81%8A%E6%88%B2%E7%9A%84%E5%B8%B3%E7%9B%AE%E8%B3%87%E6%96%99/Lasthand_GameTime.png?inline=false)
+    ![](./Lasthand_GameTime.png)
     * TotalWin 則是點擊 Extend To String Adjusts 的「+」號按鈕，並且在下方欄位中填入 `TOTALWIN: {0}`。
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_ForestBash/%E6%95%99%E5%AD%B8%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%20ASL%20%E5%AE%A2%E8%A3%BD%E5%8C%96%E9%81%8A%E6%88%B2%E7%9A%84%E5%B8%B3%E7%9B%AE%E8%B3%87%E6%96%99/Lasthand_GameWin.png?inline=false)
+    ![](./Lasthand_GameWin.png)
 * 接下來我們要對 GameTime 與 TotalWin 設定正確的數值，設定的方法一樣透過 `LasthandDataView` 腳本，以下稱它為 DataView。
     * DataView 抓有 GameTime 的參考，它會將 MainGameData 裡面儲存的 time 資料設定給 GameTime 物件的 ValueSource。
 	* `LasthandPageAction` 抓有 TotalWin 的參考，它會將 AccountUnit 裡面儲存的最終贏分資料設定給 TotalWin 物件的 ValueSource。
@@ -143,7 +143,7 @@ Account_AddLasthandDataBehaviour.OnDoBehaviour(){
 	* Text 設定 SourceType 為兩個數值相乘的 double 轉 long。
 	* 其中一個數值需要參考 GameUnit 的 OddsTable
 	* 另一個數值則參考頁面中的 Bet 物件
-	![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_ForestBash/%E6%95%99%E5%AD%B8%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%20ASL%20%E5%AE%A2%E8%A3%BD%E5%8C%96%E9%81%8A%E6%88%B2%E7%9A%84%E5%B8%B3%E7%9B%AE%E8%B3%87%E6%96%99/Lasthand_Odds.png?inline=false)
+	![](./Lasthand_Odds.png)
 
 ### 盤面結果、Nudge 結果與線獎框
 * lasthand 頁面還會顯示每一手遊戲的盤面結果與 Nudge 結果，因此我們建立兩個轉輪的物件結構，包含兩組轉輪帶的 15 個圖騰 Image 物件以及 15 個線獎框的 Image 物件。
@@ -151,12 +151,12 @@ Account_AddLasthandDataBehaviour.OnDoBehaviour(){
     * 我們需要為每個圖騰都建立一個對應的 ValueSource 物件，我們會把需要顯示的圖騰 ID 設定給 ValueSource，因此將每個 ValueSource 都設定為 Temp 形式的 int。
     * 回到圖騰身上，我們將剛剛建立好的陣列 index 選擇「Source Component Ref Value」並拉上對應的 ValueSource 物件做為參考。
     * 設定好之後，遊戲運行時，根據你設定好的圖片陣列以及 ValueSource 身上的 int 數值作為 index，圖騰 Image 就會顯示出對應 ID 的圖騰圖片。
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_ForestBash/%E6%95%99%E5%AD%B8%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%20ASL%20%E5%AE%A2%E8%A3%BD%E5%8C%96%E9%81%8A%E6%88%B2%E7%9A%84%E5%B8%B3%E7%9B%AE%E8%B3%87%E6%96%99/Lasthand_Symbol.png?inline=false)
+    ![](./Lasthand_Symbol.png)
 * 在所有線獎框身上都加入 `ValueView_OnOff` 腳本，設定 SourceType 為 Temp 形式的 bool。
     * 線獎框物件的 Image 圖片設定為遊戲中使用的線獎框圖片，並將 Image 組件 unable 掉。
     * 在 `ValueView_OnOff` 腳本的 `OnOff` 頁籤中，在 `Switch(Boolean)` 欄位新增一個項目，將物件本身丟進參考欄位並設定方法為 `Image.enabled`。
     * 設定好之後，遊戲運行時，線獎框的 Image 組件會根據自身 ValueSource 的 bool 數值來觸發開關。
-    ![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_ForestBash/%E6%95%99%E5%AD%B8%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%20ASL%20%E5%AE%A2%E8%A3%BD%E5%8C%96%E9%81%8A%E6%88%B2%E7%9A%84%E5%B8%B3%E7%9B%AE%E8%B3%87%E6%96%99/Lasthand_Frame.png?inline=false)
+    ![](./Lasthand_Frame.png)
 * 接下來要對所有圖騰和所有線獎框的 ValueSource 設定正確的數值，設定的方法一樣透過 `LasthandDataView` 腳本，以下稱它為 DataView。
     * DataView 抓有所有圖騰和所有線獎框的 ValueSource 的參考，它會將 MainGameData 裡面儲存的盤面結果 (result_wheels 陣列) 與線獎資料 (bingo.pos 陣列) 設定給圖騰與線獎框物件的 ValueSource。
 	* Nudge 的盤面結果則透過另外一份 DataView: `NudgeResultDataView` 來進行設定，可以在相同的資料夾位置找到這個腳本，設定的方式也和 `LasthandDataView` 相同。

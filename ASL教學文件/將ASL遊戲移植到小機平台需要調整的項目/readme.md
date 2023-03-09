@@ -114,4 +114,4 @@ ClientTest
 * 由於 ASL 範例遊戲場景中沒有攝影機 (由ASL初始化場景沿用)，因此移植到產學專案後要重新增加一台攝影機，並做對應的調整。
 * ASL 範例遊戲搬移到產學專案之後，也需要重新設定所有圖片的圖層 Layer。
 * OfflinePlatform 腳本身上的 Start Data 與 Round Data Text Assets 欄位可以設定假資料的文字檔如下圖。
-![](https://igshub.i17game.net/rd3_sys_gear/asl/-/raw/Asl_2.0_Demo/Img/ASL%E7%AF%84%E4%BE%8B%E9%81%8A%E6%88%B2%E7%A7%BB%E6%A4%8D%E8%80%81%E8%99%8E%E6%A9%9F%E7%94%A2%E5%AD%B8%E5%B0%88%E6%A1%88%E9%9B%A2%E7%B7%9A%E5%B9%B3%E5%8F%B0%E8%A8%AD%E5%AE%9A.png?inline=false)
+![](./ASL範例遊戲移植老虎機產學專案離線平台設定.png)
