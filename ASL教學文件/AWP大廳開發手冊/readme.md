@@ -9,11 +9,17 @@
 ## 物件結構
 在 `Assets/ArkGame/ArkSlotGame/Platform/AwpPlatform/Common/Prefabs` 資料夾下可以找到 MutiGameManager.prefab，它就是 Awp 平台的大廳物件。
 大廳物件身上掛有 `MutiGameManager` 腳本，用來設定遊戲場景的參考，後續章節會介紹如何用它來切換遊戲。
-大廳物件底下包含平台攝影機、大廳 Canvas、以及代表各款遊戲的按鈕。
+大廳物件底下包含平台攝影機、大廳 Canvas、以及 Loading Canvas。
+* 大廳 Canvas
+包含標題圖片、JP欄位、遊戲圖項與按鈕、資產欄位等等畫面元件。
+* Loading Canvas
+當玩家按下遊戲按鈕時，會顯示對應的 Loading 畫面。
+
 ![](./MultiGameManager.png)
 
 ## 載入說明
 在 App 的初始化階段，初始場景中的 `AwpPlatform_US` 會開始執行載入與初始化的流程，在這個過程中將會自動載入大廳物件，載入後的大廳物件會保留在初始場景中，初始場景不會被關閉，因此大廳物件會一直活著。
+
 ![](./初始場景載入設定.png)
 
 ## 進出流程
@@ -37,7 +43,9 @@ ILoadGame(string p_name) {
 ## 切換遊戲
 大廳中會有各個遊戲的 ICON 按鈕，提供玩家點選想玩的遊戲。
 遊戲 ICON 按鈕需要設定當玩家點選時呼叫 MutiGameManager 的 `LoadGameByButton` 方法，並且在參數欄位填入遊戲名稱(必須與 MutiGameManager 腳本身上的設定一致)。
+
 ![](./切換遊戲設定.png)
+
 `LoadGameByButton` 方法會執行釋放與載入遊戲的流程。
 ```
 ILoadGame(string p_name) {
