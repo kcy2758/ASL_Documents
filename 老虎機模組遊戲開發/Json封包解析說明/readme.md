@@ -1,11 +1,11 @@
 # Json 封包解析說明
 
 大綱
-* [StartGame 封包](startgame-封包)
-* [Spin 封包](spin-封包)
-* [NextFever 封包](nextfever-封包)
-* [NudgeFeature 封包](nudgefeature-封包)
-* [SkillFeature 封包](skillfeature-封包)
+* [StartGame 封包](#startgame-封包)
+* [Spin 封包](#spin-封包)
+* [NextFever 封包](#nextfever-封包)
+* [NudgeFeature 封包](#nudgefeature-封包)
+* [SkillFeature 封包](#skillfeature-封包)
 
 ## StartGame 封包
 * Server 收到遊戲的 StartGame 請求之後，發送給 Client 的封包。
