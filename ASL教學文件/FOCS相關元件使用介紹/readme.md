@@ -187,10 +187,31 @@
 	```
 
 ## FOCS Object Editor
-* 待補充
+* 點擊工具列 Window>Focs>FocsObjectEditor 可以開啟 FOCS 編輯器。
+* FOCS 相關物件包含 Config 設定檔、Error 錯誤定義表、Input 輸入配對表、Permission 權限列表、以及 Unit 操作單元，全部都能在 FOCS 編輯器上進行編輯。
+### 編輯器基本操作
+* 編輯器面板的左邊選單，能依照種類收起或展開。
+* 左鍵點選開啟的元件都會記錄在右半邊上方的頁籤中，左鍵點選頁籤切換分頁、中鍵關閉分頁。
+* 編輯器選單上方有搜尋欄位，且支援模糊搜尋。
+![](./FOCS編輯器基本操作.gif)
+* FOCS 編輯器與資源 Inspector 之間可以透過 ![](./SelectAsset.png) 和 ![](./OpenInFocsEditor.png) 按鈕來回跳轉。
+![](./FOCS編輯器與資源Inspector跳轉.gif)
+### 操作單元間的參考查找
+* 開發過程中，若想知道 Unit 身上的 Variable、Property 等數值有哪些地方參考，或者想知道 Unit 的 Event 有誰在監聽，可以透過 ![](./FindUsage.png) 按鈕來進行查找。
+* 搜尋功能會同時在資源與開啟的場景中進行尋找，並分別顯示於 InAsset 和 InScene 分頁中。
+![](./FOCS編輯器參考查找_AssetNScene.gif)
+* 在搜尋結果中：
+	* 若目標為一般資源或場景物件，顯示 ![](./SelectAsset.png) 按鈕，點擊按鈕跳轉到該物件進行編輯。
+	* 若目標為操作單元，顯示 ![](./OpenInFocsEditor.png) 按鈕，點擊按鈕跳轉編輯器的對應頁面進行編輯。
+	![](./FOCS編輯器參考查找_跳轉按鈕.gif)
+	* 無論是哪一種，都能點擊 ![](./StartEditObject.png) 按鈕向下展開，直接在搜尋頁面檢視物件內容。
+	![](./FOCS編輯器參考查找_inlineUsageResult.gif)
+* 儘管是複雜屬性中的參考，也能正確被找到。
+![](./FOCS編輯器參考查找_SearchShowPath.gif)
 
 ## Unit Group Config
-* 待補充
+* Mode 操作
+* Group 設定
 
 ## Error Event Table
 * 待補充
