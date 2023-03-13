@@ -210,8 +210,20 @@
 ![](./FOCS編輯器參考查找_SearchShowPath.gif)
 
 ## Unit Group Config
-* Mode 操作
-* Group 設定
+* Unit Group Config 是用來定義哪些 Unit 將會被載入的設定檔，裡面可以依照需求設定多個模式，並且在各個模式內設定平台與每款遊戲的 Unit 是否被載入。
+* 設定檔上方有設定模式的相關按鈕，包含 Last Mode、Next Mode、Add Mode、Del Mode 等按鈕，以及一個下拉式選單，提供開發者切換或增減模式。
+* 注意：當前介面顯示哪個模式就會套用該模式！！！
+![](./UnitGroupConfig_模式相關按鈕.png)
+* 在 Group Datas 列表中可以根據需求增減 Group。
+	* 例如平台 Unit 會依照不同法規市場載入不同的 Unit，因此有數種平台 Group。
+	* 又例如遊戲 Unit 會依照不同機種來決定當下要載入哪款遊戲的 Unit。
+* 開發人員需要根據正在開發的專案，增加一組該專案的模式，並設定該模式下的 Group 哪些要開啟哪些要關閉。
+	* 若 Group 設定為 default，則該 Group 的開啟或起動將套用 defalut 模式的設定。
+	* 設定為開啟的 Group 的 Unit 會在遊戲啟動時被載入。
+	![](./UnitGroupConfig_Group開關設定.png)
+* 在每個 Unit 身上的 Info 頁面中，使用下拉式選單設定 Group 欄位，將該 Unit 設定為某個 Group Datas 列表中定義好的 Group。
+	* 舉例將 DemoUnit 設定為 ForestBash 的 Group。
+	![](./Unit設定Group.png)
 
 ## Error Event Table
 * 待補充
