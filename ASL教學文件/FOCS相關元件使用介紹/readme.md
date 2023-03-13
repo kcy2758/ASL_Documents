@@ -226,7 +226,18 @@
 	![](./Unit設定Group.png)
 
 ## Error Event Table
-* 待補充
+* 在 FOCS 編輯器的 Error 類別中可以看到所有的錯誤事件列表，大致上能分成幾種裝置類型的錯誤以及 FOCS、ASL、AWP 的邏輯錯誤。
+* 每個錯誤列表中都會定義數個錯誤事件，例如與系統相關的錯誤列表中有四種錯誤，每個錯誤事件都帶有錯誤碼(Code)與錯誤訊息(Msg)。
+![](./錯誤事件列表.png)
+* 在 FOCS 編輯器的 Config 類別中可以找到 ErrorGroupConfig 設定檔，我們在此設定檔中又對所有錯誤事件進行分類，使得我們能夠在錯誤發生時，根據錯誤事件的種類來進行不同的錯誤事件處理，例如 SoftMachine 錯誤類型為播放柔和音效的錯誤事件，而 HardMachine 錯誤類型則播放警告音效。
+![](./錯誤事件分類.png)
+* 錯誤事件分類中，Exception 類型通常為程式邏輯上的非預期錯誤，其中也包含了任何 UnitLogger 拋出來的 Error、Assert、Exception。
+	* 例如遊戲運行到一半，發生非預期的錯誤時 UnityLogger 發出 Error 訊息，則會觸發此類型中的 UnexpectedError。
 
 ## PageItem Permission Table
-* 待補充
+* 在 FOCS 編輯器的 Permission 類別中可以看到系統頁面元件的權限分類列表。
+* 不同的權限類型在不同的操作行為上會需要不同的權限等級，詳細設定可參考下圖的各類型說明。
+![](./頁面元件權限分類.png)
+* 在系統頁面元件上，PageItem 腳本中的 Operate 分頁可以設定權限類型，若該欄位未設定則套用 NormalItem 類型。
+	* 例如 Main Page 的 Game Setting 按鈕為 AdvancedButton 權限類型，該按鈕的 confirm 與 pointer click 行為將需要檢查權限。
+	![](./頁面元件設定權限類型.png)
