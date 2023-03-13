@@ -2,7 +2,7 @@
 
 大綱
 * [FOCS 簡介](#focs-簡介)
-* [FOCS Unit]{#focs-unit}
+* [FOCS Unit](#focs-unit)
 * [FOCS Value Type](#focs-value-type)
 * [FOCS Object Editor](#focs-object-editor)
 * [Unit Group Config](#unit-group-config)
@@ -37,7 +37,7 @@
 	* Unit 自帶的屬性，通常在編輯期設定好數值來源後，運行期只能取得數值。
 	* 按下 "+" 按鈕增加 Property 欄位，按下 "x" 按鈕可以刪除 Property 欄位。
 	* 每個 Property 欄位的左半邊，可以使用下拉式選單設定 Property 型別，以即輸入它的名稱；右半邊，可以輸入針對該 Property 的說明。
-	* 每個 Property 欄位，若勾選 ByScript 欄位，則該 Property 需要寫程式碼來取得數值；若沒勾選，則該 Property 可以在 Inspector 上設定數值。
+	* 每個 Property 欄位，若勾選 ByScript 欄位，則該 Property 需要寫程式碼來取得數值；若沒勾選，則該 Property 可以在 Inspector 上設定數值。(參考 [使用 Value Type](#使用-value-type) 章節的 ByScript Property 補充說明)
 	* 每個 Property 欄位，若勾選 canRef 欄位，則表示該 Property 可以被別人參考；若沒勾選，則該 Property 只能在 Unit 內部讀取。
 	* 每個 Property 欄位，都有一顆 "Create Index" 按鈕，通常只有在 Property 型別為陣列時才有可能需要使用。按下按鈕會自動在 Variable 列表中增加一個對應該 Property 的 Index 數值。
 	![](./定義Unit_Property.gif)
@@ -74,7 +74,7 @@
 * Info
 	* Path: 供別人參考的路徑，不可編輯。
 	* Group: 操作單元群組，需要設定此 Unit 元件屬於哪個群組，可參考下方 [Unit Group Config](#unit-group-config) 章節。
-	* Enabe Condition 按鈕: 是否啟用此 Unit 元件的條件按鈕(預設啟用)，按下按鈕即可展開設定條件，設定方式參考下方 Condition 段落。
+	* Enabe Condition 按鈕: 設定方式參考下方 Condition 段落。
 	![](./設定Unit元件_Info.gif)
 * Variable
 	* 設定各項 Variable 欄位的預設數值，例如將 bool 陣列的長度設為 10，且預設值設為 true。
@@ -100,13 +100,91 @@
 	![](./設定Unit元件_Event.png)
 * Condition
 	* Info 頁面的 Condition
+		* 是否啟用此 Unit 元件的條件按鈕。
+		* 預設沒開啟條件，表示啟用 Unit 元件。
 	* Variable 欄位的 Condition
+		* 是否能夠 set Variable 數值的條件按鈕。
+		* 預設沒開啟條件，表示能夠 set Variable 數值。
 	* Behaviour 欄位的 Condition
+		* 是否能夠執行 Behaviour 的條件按鈕。
+		* 預設沒開啟條件，表示能夠執行 Behaviour 行為。
 	* Behaviour 欄位中監聽事件的 Condition
-3. 按下 Ctrl+S 存檔。
+		* 是否觸發監聽事件的條件按鈕。
+		* 預設沒開啟條件，表示能夠觸發監聽事件。
+	* 所有 Condition 的設定方式皆相同
+		* 按下按鈕即可展開設定條件。
+		* 根據需求將條件設置為常數，或是參考某個數值，亦或是經過某些運算後的結果。
+		* 設定數值的方式如同 Property 有非常多種可能，初學者同樣可針對這一方面多進行嘗試。
+	![](./Condition範例.png)
+3. 按下 Ctrl+S 存檔即完成 Unit 元件的設定。
 
 ## FOCS Value Type
-* 待補充
+* FOCS 數值型別，為 FOCS 框架下所使用的資料結構，當開發時需要某些複雜的資料結構，無論是要設定在 Unit 身上的 Variable，或是 Behaviour 和 Event 用來作為參數傳遞，皆可以透過 FOCS Value Type 來滿足。
+* 在專案中需要先建立 Value Type 的定義檔，在定義檔上設定 Variable 和 Property，接著透過生成按鈕自動生成 Value Type 腳本，即可在 Unit 定義檔上設定此 Value Type。
+### 建立 FOCS Value Type 定義檔
+1. 在 Project view 中按下滑鼠右鍵，選擇 Create>FOCS>Value Type Define，並將檔案名稱 "XxxDefine" 中的 "Xxx" 改成需要的名稱，例如主遊戲所使用的資料結構取名叫 "MainGameDataDefine" (注意不得改掉 "Define")。
+![](./建立ValueTypeDefine.gif)
+2. 設定 Value Type 定義檔上的資料：
+* Info
+	* Value Type 基本信息。
+	* Description: 針對此 Value Type 的說明。
+	* Name Space: Value Type 所屬的 Namespace，例如森林狂歡的 Namespace 為 `AwpGame.ForestBash`。
+	* Use Custom Member: 是否有自定義成員方法的需求，例如需要自行實作資料結構內某個 Variable 的 Set 方法。
+	![](./定義ValueType_Info.png)
+* Variable
+	* Value Type 包含的變數，通常透過持有此 Value Type 的 Unit 之 Behaviour 進行數值設定與調整，可供別人參考讀取。
+	* 設定方式如同 Unit 的 Variable。
+	![](./定義ValueType_Variable.png)
+* Property
+	* Value Type 包含的屬性，通常在編輯期設定好數值來源後，運行期只能取得數值。
+	* 設定方式如同 Unit 的 Property。
+	![](./定義ValueType_Property.png)
+3. 按下 Generate 按鈕自動生成 Value Type 腳本。
+* Value Type 腳本：包含 XxxDefine.cs 與 Xxx.cs，兩腳本內使用 `partial` 關鍵字來定義同一支 class，Xxx。
+	* XxxDefine.cs 禁止直接編輯。
+	* Xxx.cs 僅有在勾選 Use Custom Member 時會生成，可由開發者自行添加成員。
+![](./自動生成ValueType腳本.gif) 
+### 使用 Value Type
+* Unit 使用 Value Type
+	* Unit 定義檔上設定 Value Type
+	Unit 身上的 Variable、Property、Behaviour 參數、Event 參數都能使用新建立好的 Value Type。
+	![](./Unit定義檔使用ValueType.png)
+	* Unit 元件上設定 Value Type 資料
+	定義檔重新按下 Generate 按鈕重生腳本後，即可來到 Unit 元件上設定新加入的 Value Type 資料。
+		* 在 Variable 中的 Value Type，需要對它所包含的每個數值進行設定。
+		![](./設定ValueType資料_Variable.png)
+		* 在 Property 中的 Value Type，需要設定它的數值來源。
+		![](./設定ValueType資料_Property.png)
+		* 在 Behaviour 與 Event 的參數中的 Value Type，可以拿來作為參數傳遞。
+		![](./設定ValueType資料_BnE.png)
+* Value Type 的 Set 方法
+	* 根據開發需求的不同，Value Type 有可能會是一個複雜的資料結構，因此在透過程式碼為每個 Value Type 所包含的 Variable 賦值時，容易寫成一大坨不易閱讀的程式碼。
+	* 因此我們通常會將 Value Type 的 Set 方法寫在 Value Type 生成時的 Xxx.cs 腳本中，方便程式碼的管理與閱讀。
+	* 舉例如下：
+	```
+	// DemoData.cs
+	public partial class DemoData : ClassValue<DemoData> {
+		//傳遞 JSON 資料讓 Value Type 自行解析
+		public void SetDemoData(JSON p_json) {
+			demoID = p_json.ToInt("demo_id");
+			demoMsg = p_json.ToString("demo_msg");
+		}
+	}
+	```
+* ByScript Property 補充說明
+	* 若是 Property 中有勾選 ByScript 的欄位，在生成腳本後會出現編譯錯誤，點擊編譯錯誤的 log 可以看到類似於下方的程式碼裡面，最後面的 `GetXxx` 不存在於目前的內容中。
+	```
+	AddMemberAsProperty(p_variable, xxxProperty, "xxx", "...", false, GetXxx);
+	```
+	* 這是因為開發人員需要在可由開發者自行添加成員的腳本中自行實作 `GetXxx` 方法，。
+	* 自行實作 ByScript Property 舉例如下：
+	```
+	// DemoDataDefine.cs 禁止直接編輯的腳本
+	AddMemberAsProperty(p_variable, demoShaderColorProperty, "demoShaderColor", "來自範例Shader的顏色", false, GetDemoShaderColor); // => GetDemoShaderColor 不存在於目前的內容中
+	
+	// DemoData.cs 可由開發者自行添加成員的腳本
+	Color GetDemoShaderColor() { return Color.white; } // => 自行添加此方法並實作內容
+	```
 
 ## FOCS Object Editor
 * 待補充
